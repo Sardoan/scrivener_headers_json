@@ -72,13 +72,9 @@ Per-Page: 10
 
 ## Contributing
 
-Contributions of all types are welcomed and encouraged.  Please
-make appropriate use of [Issues][issues] and [Pull Requests][pulls].  All code
-should have test coverage.
+Contributions of all types are welcomed and encouraged.  Based on [scrivener_headers][scrivener_header] .
 
-[issues]: https://github.com/doomspork/scrivener_headers/issues
-[pulls]: https://github.com/doomspork/scrivener_headers/pulls
-
+[scrivener_header]: https://github.com/doomspork/scrivener_headers/
 
 ## License
 
