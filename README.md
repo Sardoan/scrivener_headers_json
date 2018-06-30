@@ -23,7 +23,7 @@ Add to `mix.exs`:
     [
       # ...
       {:scrivener_headers_json,
-    	git: "https://github.com/Sardoan/scrivener_headers"}
+    	git: "https://github.com/Sardoan/scrivener_headers_json"}
       # ...
     ]
   end
