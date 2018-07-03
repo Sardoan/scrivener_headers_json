@@ -62,10 +62,10 @@ With `curl --include` we can see our new headers:
 ```shell
 $ curl --include 'https://localhost:4000/people?page=5'
 HTTP/1.1 200 OK
-Link: [{"first":"http://localhost:4000/people?page=1"},
-  {"last":"http://localhost:4000/people?page=30"},
-  {"next":"http://localhost:4000/people?page=6"},
-  {"prev":"http://localhost:4000/people?page=4"}]
+Link: {"first":"http://localhost:4000/people?page=1",
+  "last":"http://localhost:4000/people?page=30",
+  "next":"http://localhost:4000/people?page=6",
+  "prev":"http://localhost:4000/people?page=4"}
 Total: 300
 Per-Page: 10
 ```
