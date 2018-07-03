@@ -39,14 +39,16 @@ defmodule Scrivener.Headers do
 
   @spec build_link_header(URI.t, Scrivener.Page.t) :: String.t
   defp build_link_header(uri, page) do
-    [link_str(uri, 1, "first"),
-     link_str(uri, page.total_pages, "last")]
+    map = %{}
+    map
+    |> Map.put("first", link_str(uri, 1))
+    |> Map.put("last", link_str(uri, page.total_pages))
     |> maybe_add_prev(uri, page.page_number, page.total_pages)
     |> maybe_add_next(uri, page.page_number, page.total_pages)
     |> Poison.encode!
   end
 
-  defp link_str(%{query: req_query} = uri, page_number, rel) do
+  defp link_str(%{query: req_query} = uri, page_number) do
     query =
       req_query
       |> URI.decode_query()
@@ -55,19 +57,18 @@ defmodule Scrivener.Headers do
     uri_str =
       %URI{uri | query: query}
       |> URI.to_string()
-      %{rel => uri_str}
-    # ~s(<#{uri_str}>; rel="#{rel}")
+    uri_str
   end
 
   defp maybe_add_prev(links, uri, page_number, total_pages) when 1 < page_number and page_number <= total_pages do
-    [link_str(uri, page_number - 1, "prev") | links]
+    Map.put(links, "prev", link_str(uri, page_number - 1))
   end
   defp maybe_add_prev(links, _uri, _page_number, _total_pages) do
     links
   end
 
   defp maybe_add_next(links, uri, page_number, total_pages) when 1 <= page_number and page_number < total_pages do
-    [link_str(uri, page_number + 1, "next") | links]
+    Map.put(links, "next", link_str(uri, page_number + 1))
   end
   defp maybe_add_next(links, _uri, _page_number, _total_pages) do
     links
